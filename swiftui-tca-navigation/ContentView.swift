@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  swiftui-tca-navigation
-//
-//  Created by Han-Saem Park on 2024-06-02.
-//
-
 import SwiftUI
 import SwiftData
 
