@@ -9,13 +9,13 @@ struct ContactsFeature {
     @Presents var addContact: AddContactFeature.State? //present AddContactFeature (child)
     var contacts: IdentifiedArrayOf<Contact> = []
   }
-
+  
   //MARK: - Action
   enum Action {
     case addButtonTapped
     case addContact(PresentationAction<AddContactFeature.Action>) //present AddContactFeature (child)
   }
-
+  
   //MARK: - Reducer
   var body: some ReducerOf<Self> {
     Reduce { state, action in
@@ -26,14 +26,16 @@ struct ContactsFeature {
           contact: Contact(id: UUID(), name: "")
         )
         return .none
-                
-      case .addContact(.presented(.cancelButtonTapped)):
+        
+        //case .addContact(.presented(.cancelButtonTapped)):
+      case .addContact(.presented(.delegate(.cancel))): //for child-to-parent communication
         state.addContact = nil
         return .none
         
-      case .addContact(.presented(.saveButtonTapped)):
-        guard let contact = state.addContact?.contact
-        else { return .none }
+        //case .addContact(.presented(.saveButtonTapped)):
+      case let .addContact(.presented(.delegate(.saveContact(contact)))): //for child-to-parent communication
+        // guard let contact = state.addContact?.contact
+        // else { return .none }
         state.contacts.append(contact)
         state.addContact = nil
         return .none
