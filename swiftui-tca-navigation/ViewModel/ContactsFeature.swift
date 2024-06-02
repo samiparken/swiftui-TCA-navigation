@@ -7,6 +7,7 @@ struct ContactsFeature {
   @ObservableState
   struct State: Equatable {
     @Presents var addContact: AddContactFeature.State? //present AddContactFeature (child)
+    @Presents var alert: AlertState<Action.Alert>? //present Alert
     var contacts: IdentifiedArrayOf<Contact> = []
   }
   
@@ -15,6 +16,12 @@ struct ContactsFeature {
     case addButtonTapped
     case addContact(PresentationAction<AddContactFeature.Action>) //present AddContactFeature (child)
     case deleteButtonTapped(id: Contact.ID)
+    
+    /// for Alert
+    case alert(PresentationAction<Alert>)
+    enum Alert: Equatable {
+      case confirmDeletion(id: Contact.ID)
+    }
   }
   
   //MARK: - Reducer
@@ -46,13 +53,28 @@ struct ContactsFeature {
         return .none
         
       case let .deleteButtonTapped(id: id):
+        //Alert
+        state.alert = AlertState {
+          TextState("Are you sure?")
+        } actions: {
+          ButtonState(role: .destructive, action: .confirmDeletion(id: id)) {
+            TextState("Delete")
+          }
+        }
+        return .none
+        
+      case let .alert(.presented(.confirmDeletion(id: id))):
+        state.contacts.remove(id: id)
+        return .none
+        
+      case .alert:
         return .none
         
       }
     }
-    // child reducer
-    .ifLet(\.$addContact, action: \.addContact) {
-      AddContactFeature()
-    }
+    // child View
+    .ifLet(\.$addContact, action: \.addContact) {  AddContactFeature() }
+    // Alert View
+    .ifLet(\.$alert, action: \.alert)
   }
 }
