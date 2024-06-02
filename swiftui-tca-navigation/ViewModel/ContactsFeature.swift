@@ -27,17 +27,18 @@ struct ContactsFeature {
         )
         return .none
         
-        //case .addContact(.presented(.cancelButtonTapped)):
-      case .addContact(.presented(.delegate(.cancel))): //for child-to-parent communication
-        state.addContact = nil
-        return .none
+        /// replaced with dismiss in child reducer
+        //case .addContact(.presented(.cancelButtonTapped)): // for child reducer
+        //case .addContact(.presented(.delegate(.cancel))):  //for child-to-parent communication
+        //state.addContact = nil
+        //return .none
         
-        //case .addContact(.presented(.saveButtonTapped)):
+        //case .addContact(.presented(.saveButtonTapped)): // for child reducer
       case let .addContact(.presented(.delegate(.saveContact(contact)))): //for child-to-parent communication
         // guard let contact = state.addContact?.contact
         // else { return .none }
         state.contacts.append(contact)
-        state.addContact = nil
+        //state.addContact = nil //replaced with dismiss in child reducer
         return .none
         
       case .addContact: //when AddContactFeature is presented
