@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		31CEED5F2C0CC7C000279638 /* swiftui_tca_navigationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED5E2C0CC7C000279638 /* swiftui_tca_navigationApp.swift */; };
-		31CEED612C0CC7C000279638 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED602C0CC7C000279638 /* ContentView.swift */; };
+		31CEED612C0CC7C000279638 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED602C0CC7C000279638 /* MainView.swift */; };
 		31CEED632C0CC7C000279638 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED622C0CC7C000279638 /* Item.swift */; };
 		31CEED652C0CC7C200279638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CEED642C0CC7C200279638 /* Assets.xcassets */; };
 		31CEED682C0CC7C200279638 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CEED672C0CC7C200279638 /* Preview Assets.xcassets */; };
@@ -17,6 +17,7 @@
 		31CEED7E2C0CC7C200279638 /* swiftui_tca_navigationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED7D2C0CC7C200279638 /* swiftui_tca_navigationUITestsLaunchTests.swift */; };
 		31CEED8C2C0CC96F00279638 /* ContactsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED8B2C0CC96F00279638 /* ContactsFeature.swift */; };
 		31CEED8F2C0CC9A600279638 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 31CEED8E2C0CC9A600279638 /* ComposableArchitecture */; };
+		31CEED922C0CCC3100279638 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED912C0CCC3100279638 /* Contact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,7 @@
 /* Begin PBXFileReference section */
 		31CEED5B2C0CC7C000279638 /* swiftui-tca-navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swiftui-tca-navigation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31CEED5E2C0CC7C000279638 /* swiftui_tca_navigationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_tca_navigationApp.swift; sourceTree = "<group>"; };
-		31CEED602C0CC7C000279638 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		31CEED602C0CC7C000279638 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		31CEED622C0CC7C000279638 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		31CEED642C0CC7C200279638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31CEED672C0CC7C200279638 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		31CEED7B2C0CC7C200279638 /* swiftui_tca_navigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_tca_navigationUITests.swift; sourceTree = "<group>"; };
 		31CEED7D2C0CC7C200279638 /* swiftui_tca_navigationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_tca_navigationUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		31CEED8B2C0CC96F00279638 /* ContactsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsFeature.swift; sourceTree = "<group>"; };
+		31CEED912C0CCC3100279638 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +102,12 @@
 		31CEED5D2C0CC7C000279638 /* swiftui-tca-navigation */ = {
 			isa = PBXGroup;
 			children = (
-				31CEED8A2C0CC95600279638 /* Data */,
+				31CEED8A2C0CC95600279638 /* Model */,
+				31CEED932C0CCC5100279638 /* ViewModel */,
+				31CEED902C0CCA0F00279638 /* View */,
 				31CEED5E2C0CC7C000279638 /* swiftui_tca_navigationApp.swift */,
-				31CEED602C0CC7C000279638 /* ContentView.swift */,
 				31CEED642C0CC7C200279638 /* Assets.xcassets */,
 				31CEED662C0CC7C200279638 /* Preview Content */,
-				31CEED8B2C0CC96F00279638 /* ContactsFeature.swift */,
 			);
 			path = "swiftui-tca-navigation";
 			sourceTree = "<group>";
@@ -135,12 +137,29 @@
 			path = "swiftui-tca-navigationUITests";
 			sourceTree = "<group>";
 		};
-		31CEED8A2C0CC95600279638 /* Data */ = {
+		31CEED8A2C0CC95600279638 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				31CEED622C0CC7C000279638 /* Item.swift */,
+				31CEED912C0CCC3100279638 /* Contact.swift */,
 			);
-			path = Data;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		31CEED902C0CCA0F00279638 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31CEED602C0CC7C000279638 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31CEED932C0CCC5100279638 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				31CEED8B2C0CC96F00279638 /* ContactsFeature.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,8 +298,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31CEED612C0CC7C000279638 /* ContentView.swift in Sources */,
+				31CEED612C0CC7C000279638 /* MainView.swift in Sources */,
 				31CEED632C0CC7C000279638 /* Item.swift in Sources */,
+				31CEED922C0CCC3100279638 /* Contact.swift in Sources */,
 				31CEED5F2C0CC7C000279638 /* swiftui_tca_navigationApp.swift in Sources */,
 				31CEED8C2C0CC96F00279638 /* ContactsFeature.swift in Sources */,
 			);
