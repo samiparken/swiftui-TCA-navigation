@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 import ComposableArchitecture
 
-struct ContactView: View {
+struct ContactsView: View {
   //MARK: - SwiftData
   @Environment(\.modelContext) private var modelContext
   @Query private var items: [Item]
@@ -34,7 +34,7 @@ struct ContactView: View {
 
 //MARK: - PREVIEW
 #Preview {
-  ContactView(store: Store(initialState: ContactsFeature.State(
+  ContactsView(store: Store(initialState: ContactsFeature.State(
     contacts: [
       Contact(id: UUID(), name: "Blob"),
       Contact(id: UUID(), name: "Blob Jr"),
