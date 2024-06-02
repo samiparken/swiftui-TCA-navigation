@@ -18,9 +18,15 @@ struct ContactsFeature {
   var body: some ReducerOf<Self> {
     Reduce { state, action in
       switch action {
-
+        
       case .addButtonTapped:
-        // +TODO: Handle action
+        state.addContact = AddContactFeature.State(
+          contact: Contact(id: UUID(), name: "")
+        )
+        return .none
+        
+      case .addContact(.presented(.cancelButtonTapped)):
+        state.addContact = nil
         return .none
         
       case .addContact:
