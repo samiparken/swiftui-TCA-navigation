@@ -15,6 +15,8 @@
 		31CEED722C0CC7C200279638 /* swiftui_tca_navigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED712C0CC7C200279638 /* swiftui_tca_navigationTests.swift */; };
 		31CEED7C2C0CC7C200279638 /* swiftui_tca_navigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED7B2C0CC7C200279638 /* swiftui_tca_navigationUITests.swift */; };
 		31CEED7E2C0CC7C200279638 /* swiftui_tca_navigationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED7D2C0CC7C200279638 /* swiftui_tca_navigationUITestsLaunchTests.swift */; };
+		31CEED8C2C0CC96F00279638 /* ContactsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CEED8B2C0CC96F00279638 /* ContactsFeature.swift */; };
+		31CEED8F2C0CC9A600279638 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 31CEED8E2C0CC9A600279638 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,7 @@
 		31CEED772C0CC7C200279638 /* swiftui-tca-navigationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swiftui-tca-navigationUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31CEED7B2C0CC7C200279638 /* swiftui_tca_navigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_tca_navigationUITests.swift; sourceTree = "<group>"; };
 		31CEED7D2C0CC7C200279638 /* swiftui_tca_navigationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_tca_navigationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		31CEED8B2C0CC96F00279638 /* ContactsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsFeature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31CEED8F2C0CC9A600279638 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,11 +100,12 @@
 		31CEED5D2C0CC7C000279638 /* swiftui-tca-navigation */ = {
 			isa = PBXGroup;
 			children = (
+				31CEED8A2C0CC95600279638 /* Data */,
 				31CEED5E2C0CC7C000279638 /* swiftui_tca_navigationApp.swift */,
 				31CEED602C0CC7C000279638 /* ContentView.swift */,
-				31CEED622C0CC7C000279638 /* Item.swift */,
 				31CEED642C0CC7C200279638 /* Assets.xcassets */,
 				31CEED662C0CC7C200279638 /* Preview Content */,
+				31CEED8B2C0CC96F00279638 /* ContactsFeature.swift */,
 			);
 			path = "swiftui-tca-navigation";
 			sourceTree = "<group>";
@@ -130,6 +135,14 @@
 			path = "swiftui-tca-navigationUITests";
 			sourceTree = "<group>";
 		};
+		31CEED8A2C0CC95600279638 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				31CEED622C0CC7C000279638 /* Item.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +159,9 @@
 			dependencies = (
 			);
 			name = "swiftui-tca-navigation";
+			packageProductDependencies = (
+				31CEED8E2C0CC9A600279638 /* ComposableArchitecture */,
+			);
 			productName = "swiftui-tca-navigation";
 			productReference = 31CEED5B2C0CC7C000279638 /* swiftui-tca-navigation.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +234,9 @@
 				Base,
 			);
 			mainGroup = 31CEED522C0CC7C000279638;
+			packageReferences = (
+				31CEED8D2C0CC9A600279638 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 31CEED5C2C0CC7C000279638 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -263,6 +282,7 @@
 				31CEED612C0CC7C000279638 /* ContentView.swift in Sources */,
 				31CEED632C0CC7C000279638 /* Item.swift in Sources */,
 				31CEED5F2C0CC7C000279638 /* swiftui_tca_navigationApp.swift in Sources */,
+				31CEED8C2C0CC96F00279638 /* ContactsFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +612,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		31CEED8D2C0CC9A600279638 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		31CEED8E2C0CC9A600279638 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31CEED8D2C0CC9A600279638 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 31CEED532C0CC7C000279638 /* Project object */;
 }
