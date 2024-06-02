@@ -14,6 +14,7 @@ struct ContactsFeature {
   enum Action {
     case addButtonTapped
     case addContact(PresentationAction<AddContactFeature.Action>) //present AddContactFeature (child)
+    case deleteButtonTapped(id: Contact.ID)
   }
   
   //MARK: - Reducer
@@ -42,6 +43,9 @@ struct ContactsFeature {
         return .none
         
       case .addContact: //when AddContactFeature is presented
+        return .none
+        
+      case let .deleteButtonTapped(id: id):
         return .none
         
       }
