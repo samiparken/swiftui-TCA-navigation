@@ -26,7 +26,7 @@ struct swiftui_tca_navigationApp: App {
   
   var body: some Scene {
     WindowGroup {
-      MainView(store: Store(initialState: ContactsFeature.State()) {
+      ContactView(store: Store(initialState: ContactsFeature.State()) {
         ContactsFeature()
       })
     }
