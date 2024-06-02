@@ -2,17 +2,20 @@ import ComposableArchitecture
 
 @Reducer
 struct AddContactFeature {
+  
   //MARK: - State
   @ObservableState
   struct State: Equatable {
     var contact: Contact
   }
+  
   //MARK: - Action
   enum Action {
     case cancelButtonTapped
     case saveButtonTapped
     case setName(String)
   }
+  
   //MARK: - Reducer
   var body: some ReducerOf<Self> {
     Reduce { state, action in

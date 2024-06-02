@@ -8,10 +8,11 @@ struct ContactsView: View {
   @Query private var items: [Item]
   
   //MARK: - Store
-  let store: StoreOf<ContactsFeature>
+  @Bindable var store: StoreOf<ContactsFeature>
   
   //MARK: - BODY
   var body: some View {
+    
     NavigationStack {
       List {
         ForEach(store.contacts) { contact in
@@ -29,6 +30,15 @@ struct ContactsView: View {
         }
       }
     }
+    //present AddContactView (child)
+    .sheet(
+      item: $store.scope(state: \.addContact, action: \.addContact)
+    ) { addContactStore in
+      NavigationStack {
+        AddContactView(store: addContactStore)
+      }
+    }
+    
   }
 }
 
