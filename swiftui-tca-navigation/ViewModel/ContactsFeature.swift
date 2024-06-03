@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 import ComposableArchitecture
 
 @Reducer
@@ -6,12 +7,13 @@ struct ContactsFeature {
   //MARK: - State
   @ObservableState
   struct State: Equatable {
+    var contacts: IdentifiedArrayOf<Contact> = []
+
     //@Presents var addContact: AddContactFeature.State? //present AddContactFeature (child)
     //@Presents var alert: AlertState<Action.Alert>? //present Alert
     @Presents var destination: Destination.State? // for all possible destinations (addContact and alert)
-    var contacts: IdentifiedArrayOf<Contact> = []
   }
-  
+    
   /// All possible Destinations (ContactsFeature can navigate to two possible destinations)
   @Reducer(state: .equatable)
   enum Destination {
@@ -39,22 +41,21 @@ struct ContactsFeature {
       switch action {
         
 
+              
 //      case .addButtonTapped:
 //        state.addContact = AddContactFeature.State(
 //          contact: Contact(id: UUID(), name: "")
 //        )
 //        return .none
+        
       case .addButtonTapped:
-        //state.addContact = AddContactFeature.State(
-        //  contact: Contact(id: UUID(), name: "")
-        // )
         state.destination = .addContact(
           AddContactFeature.State(
             contact: Contact(id: UUID(), name: "")
-          ))
+          )
+        )
         return .none
-        
-        
+                
         
         
         /// replaced with dismiss in child reducer
@@ -73,28 +74,22 @@ struct ContactsFeature {
 //        state.contacts.append(contact)
         //state.addContact = nil //replaced with dismiss in child reducer
 //        return .none
-        
       case let .destination(.presented(.addContact(.delegate(.saveContact(contact))))):
         state.contacts.append(contact)
         return .none
         
         
         
-        //case .addContact: //when AddContactFeature is presented
-        //return .none
-        
-//      case let .deleteButtonTapped(id: id):
-//        //Alert
-//        state.alert = AlertState {
-//          TextState("Are you sure?")
-//        } actions: {
-//          ButtonState(role: .destructive, action: .confirmDeletion(id: id)) {
-//            TextState("Delete")
-//          }
-//        }
 
-      case let .destination(.presented(.alert(.confirmDeletion(id: id)))):
         
+      case let .destination(.presented(.alert(.confirmDeletion(id: id)))):
+        state.contacts.remove(id: id)
+        return .none
+        
+      case .destination:
+        return .none
+        
+      case let .deleteButtonTapped(id: id):
         state.destination = .alert(
           AlertState {
             TextState("Are you sure?")
@@ -105,16 +100,14 @@ struct ContactsFeature {
           }
         )
         return .none
+
         
-      case .destination:
-        return .none
-        
-      case let .alert(.presented(.confirmDeletion(id: id))):
-        state.contacts.remove(id: id)
-        return .none
-        
-      case .alert:
-        return .none
+      /// removed after "Destination"
+      //case .addContact: //when AddContactFeature is presented
+      //return .none
+
+      //case .alert:
+      //return .none
         
       }
     }
