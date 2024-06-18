@@ -13,17 +13,21 @@ struct ContactsView: View {
   //MARK: - BODY
   var body: some View {
     
-    NavigationStack {
+    //Navigation
+    NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
       List {
         ForEach(store.contacts) { contact in
-          HStack {
-            Text(contact.name)
-            Spacer()
-            Button {
-              store.send(.deleteButtonTapped(id: contact.id))
-            } label: {
-              Image(systemName: "trash")
-                .foregroundColor(.red)
+          //Navigation
+          NavigationLink(state: ContactDetailFeature.State(contact: contact)) {
+            HStack {
+              Text(contact.name)
+              Spacer()
+              Button {
+                store.send(.deleteButtonTapped(id: contact.id))
+              } label: {
+                Image(systemName: "trash")
+                  .foregroundColor(.red)
+              }
             }
           }
         }
@@ -38,6 +42,8 @@ struct ContactsView: View {
           }
         }
       }
+    } destination: { store in //Navigation Destination
+      ContactDetailView(store: store)
     }
     //present AddContactView (child)
     .sheet(

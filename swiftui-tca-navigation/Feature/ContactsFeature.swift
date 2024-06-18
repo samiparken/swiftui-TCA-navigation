@@ -12,6 +12,9 @@ struct ContactsFeature {
     //@Presents var addContact: AddContactFeature.State? //present AddContactFeature (child)
     //@Presents var alert: AlertState<Action.Alert>? //present Alert
     @Presents var destination: Destination.State? // for all possible destinations (addContact and alert)
+
+    //Navigation
+    var path = StackState<ContactDetailFeature.State>()
   }
     
   /// All possible Destinations (ContactsFeature can navigate to two possible destinations)
@@ -29,6 +32,9 @@ struct ContactsFeature {
     
     case addButtonTapped
     case deleteButtonTapped(id: Contact.ID)
+    
+    //Navigation
+    case path(StackAction<ContactDetailFeature.State, ContactDetailFeature.Action>)
     
     enum Alert: Equatable {
       case confirmDeletion(id: Contact.ID)
@@ -109,6 +115,12 @@ struct ContactsFeature {
       //case .alert:
       //return .none
         
+        
+        //Navigation
+      case .path:
+        return .none
+        
+        
       }
     }
     // child View
@@ -116,6 +128,10 @@ struct ContactsFeature {
     // Alert View
     //.ifLet(\.$alert, action: \.alert)
     // for AddContact and Alert
-    .ifLet(\.$destination, action: \.destination)
+    .ifLet(\.$destination, action: \.destination) 
+    // Navigation (to integrate the ContactDetailFeature into the stack of the ContactsFeature)
+    .forEach(\.path, action: \.path) {
+      ContactDetailFeature()
+    }
   }
 }
